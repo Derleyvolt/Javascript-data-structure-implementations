@@ -4,10 +4,17 @@ class singly_linked_list {
         this.prox = null;
     }
 
+    static contador = 0
+
+    len() {
+        return singly_linked_list.contador
+    }
+
     insert(val) {
         if(this.val == null) {
             this.val  = val
             this.prox = new singly_linked_list()
+            singly_linked_list.contador++
         } else {
             this.prox.insert(val)
         }
@@ -15,6 +22,7 @@ class singly_linked_list {
 
     remove(val) {
         if(this.val == val) {
+            singly_linked_list.contador--
             return this.prox
         } else {
             this.prox = this.prox.remove(val)
