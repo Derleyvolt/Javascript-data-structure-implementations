@@ -1,4 +1,4 @@
-class singly_linked_list {
+class queue {
     constructor() {
         this.val  = null;
         this.prox = null;
@@ -7,26 +7,25 @@ class singly_linked_list {
     static contador = 0
 
     len() {
-        return singly_linked_list.contador
+        return queue.contador
     }
 
     insert(val) {
         if(this.val == null) {
             this.val  = val
-            this.prox = new singly_linked_list()
-            singly_linked_list.contador++
+            this.prox = new queue()
+            queue.contador++
         } else {
             this.prox.insert(val)
         }
     }
 
-    remove(val) {
-        if(this.val == val) {
-            singly_linked_list.contador--
-            return this.prox
+    remove_front() {
+        if(this.prox != null) {
+            this.val  = this.prox.val;
+            this.prox = this.prox.prox;
         } else {
-            this.prox = this.prox.remove(val)
-            return this
+            this.val = null;
         }
     }
 
@@ -38,12 +37,12 @@ class singly_linked_list {
     }
 }
 
-list = new singly_linked_list()
+T = new queue()
 
-for(var i = 0; i < 10; i++) {
-    list.insert(i+1)
+for(let i = 0; i < 10; i++) {
+    T.insert(i+1)
 }
 
-list = list.remove(5)
+T.remove_front()
 
-list.traverse()
+T.traverse()
